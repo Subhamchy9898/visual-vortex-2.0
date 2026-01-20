@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Motivation Centered UX— Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="page active">
+        <div class="container">
+            <div class="login-card">
+                <h1>Welcome Back</h1>
+                <p>Continue your learning journey</p>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="dashboardPage" class="page">
+        <header class="header">
+            <div class="container">
+                <div class="dashboard-hero">
+                    <div class="hero-title">Motivation Dashboard</div>
+                    <div class="hero-sub">Focus • Habit • Momentum — celebrate small wins</div>
+                </div>
+
+                <div class="header-controls">
+                    <div class="hero-stat">Progress: <strong id="topProgress">0%</strong></div>
+                    <div class="clock-box">
+                        <span id="localClock">--</span>
+                        <button id="markTodayBtn" class="btn-secondary">Mark Today</button>
+                    </div>
+                    <button id="logoutBtn" class="btn-secondary">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Motivation Section -->
+            <section class="motivation-section">
+                <div class="progress-card">
+                        <h2>Progress</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div id="chapterProgress" class="progress-fill"></div>
+                        </div>
+                        <span id="progressPercent" class="progress-text">0%</span>
+                    </div>
+                    <p id="motivationalMsg">Start your journey today</p>
+                </div>
+            </section>
+
+            <!-- arrival toast -->
+            <div id="arrivalToast" class="arrival-toast" aria-live="polite"></div>
+
+            <!-- Quick Access Grid -->
+            <section class="quick-access">
+                <h2>Quick Learning</h2>
+                <!-- Saved / Liked quick cards for two-tap access -->
+                <div class="action-cards">
+                    <div id="savedCard" class="action-card">
+                        <div class="card-icon">💾</div>
+                        <div class="card-body">
+                            <div class="card-title">Saved</div>
+                            <div class="card-sub" id="savedCount">0 items</div>
+                        </div>
+                    </div>
+
+                    <div id="likedCard" class="action-card">
+                        <div class="card-icon">❤️</div>
+                        <div class="card-body">
+                            <div class="card-title">Liked</div>
+                            <div class="card-sub" id="likedCount">0 items</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-grid" id="contentGrid">
+                    <!-- Content items populated by JS -->
+                </div>
+            </section>
+
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+                <button id="goalsBtn" class="btn-primary">Weekly Goals</button>
+                <button id="milestonesBtn" class="btn-primary">Milestones</button>
+            </div>
+
+            <!-- Slide 5 card removed -->
+        </main>
+    </div>
+
+    <!-- WEEKLY GOALS PAGE -->
+    <div id="goalsPage" class="page">
+        <header class="header">
+            <div class="container">
+                <button id="backToDashboard" class="btn-back">&larr; Back</button>
+                <h1>Weekly Goals</h1>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- Weekly calendar: shows this week's days and visit status -->
+            <div id="weekCalendar" class="week-calendar" aria-hidden="false"></div>
+
+            <div class="goals-section">
+                <form id="goalForm">
+                    <div class="input-group">
+                        <input type="text" id="newGoal" placeholder="Add a weekly goal..." required>
+                        <button type="submit" class="btn-add">+</button>
+                    </div>
+                </form>
+                
+                <div class="goals-list" id="goalsList">
+                    <!-- Goals populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MILESTONES PAGE -->
+    <div id="milestonesPage" class="page">
+        <header class="header">
+            <div class="container">
+                <button id="backFromMilestones" class="btn-back">&larr; Back</button>
+                <h1>Milestones</h1>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="milestones-list" id="milestonesList">
+                <!-- milestones rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- STUDY PLANNER PAGE -->
+    <div id="studyPlannerPage" class="page">
+        <header class="header">
+            <div class="container">
+                <button id="backToDashboardFromPlanner" class="btn-back">&larr; Back</button>
+                <h1>Study Planner</h1>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="planner-section">
+                <form id="studySessionForm">
+                    <div class="input-group">
+                        <label for="sessionDate">Date</label>
+                        <input type="date" id="sessionDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sessionTime">Time</label>
+                        <input type="time" id="sessionTime" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sessionSubject">Subject</label>
+                        <input type="text" id="sessionSubject" placeholder="e.g., Physics, Math" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="sessionDuration">Duration (minutes)</label>
+                        <input type="number" id="sessionDuration" min="15" max="480" placeholder="60" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Add Study Session</button>
+                </form>
+                
+                <div class="upcoming-sessions" id="upcomingSessions">
+                    <h2>Upcoming Study Sessions</h2>
+                    <!-- Sessions will be listed here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MILESTONE MODAL -->
+    <div id="milestoneModal" class="modal">
+        <div class="modal-content">
+            <div class="milestone-icon">🎉</div>
+            <h2>Milestone Reached!</h2>
+            <p>Your effort matters. Keep going!</p>
+            <button id="closeMilestone" class="btn-primary">Continue Learning</button>
+        </div>
+    </div>
+
+    <!-- REWARD MODAL -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <button id="closeReward" class="btn-close">&times;</button>
+            <div id="rewardBody">
+                <div class="milestone-icon">🏆</div>
+                <h2 id="rewardTitle">Reward</h2>
+                <p id="rewardDesc">Congrats — you unlocked a reward.</p>
+                <div id="rewardActions" style="margin-top:1rem;display:flex;gap:10px;flex-wrap:wrap;justify-content:center"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT VIEWER MODAL -->
+    <div id="contentModal" class="modal">
+        <div class="modal-content content-modal">
+            <button id="closeContent" class="btn-close">&times;</button>
+            <h2 id="contentTitle">Content</h2>
+            <div id="contentBody" class="content-body">
+                <!-- Content loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SAVED / LIKED LIST MODALS -->
+    <div id="savedModal" class="modal">
+        <div class="modal-content">
+            <button class="btn-close" id="closeSaved">&times;</button>
+            <h2>Saved Content</h2>
+            <div id="savedList" class="content-body"></div>
+        </div>
+    </div>
+
+    <div id="likedModal" class="modal">
+        <div class="modal-content">
+            <button class="btn-close" id="closeLiked">&times;</button>
+            <h2>Liked Content</h2>
+            <div id="likedList" class="content-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+/* style.css - Minimal, student-friendly design system */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Physics Wallah–inspired palette (inspired, not copied) */
+  --pw-deep: #2b0b57; /* deep purple */
+  --pw-vivid: #ff6a00; /* vivid orange accent */
+  --pw-warm: #ffd27f; /* warm highlight */
+  --pw-muted: #8a6fb2;
+  --text-dark: #2b2430;
+
+  /* supportive neutrals */
+  --bg-cream: #fffaf6;
+  --panel-bg: #ffffff;
+  --outline: #1f1730;
+
+  /* accents & effects */
+  --glass: rgba(255,255,255,0.6);
+  --shadow-strong: rgba(43,11,87,0.18);
+  --shadow-soft: rgba(43,11,87,0.06);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  /* PW-inspired background: subtle purple with warm orange glow */
+  background: radial-gradient(1000px 400px at 10% 10%, rgba(255,106,0,0.06), transparent 10%), linear-gradient(135deg, rgba(43,11,87,0.06) 0%, rgba(255,234,210,0.02) 100%), var(--bg-cream);
+  min-height: 100vh;
+}
+
+/* Page Management */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1rem 0;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--pw-deep);
+}
+
+/* Motivation hero in header */
+.dashboard-hero {
+  display:flex;
+  flex-direction:column;
+}
+.hero-title{
+  font-size:1.25rem;
+  font-weight:700;
+  color:var(--pw-deep); /* deep purple */
+}
+.hero-sub{
+  font-size:0.95rem;
+  color:var(--pw-muted);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-stat{
+  background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,250,245,0.98));
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid rgba(43,11,87,0.06);
+  font-weight:600;
+}
+
+.clock-box{ display:flex; align-items:center; gap:8px; margin-left:8px }
+.clock-box #localClock{ font-size:0.9rem; color:var(--pw-muted); font-weight:600 }
+.clock-box .btn-secondary{ padding:6px 10px; border-radius:8px }
+
+/* Outlined card system — comic/outlined look from reference */
+.card-outline {
+  background: linear-gradient(180deg, #fff, #fff);
+  border-radius: 18px;
+  padding: 20px;
+  border: 1px solid rgba(43,11,87,0.06);
+  box-shadow: 0 12px 30px rgba(43,11,87,0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card-outline:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(43,11,87,0.10); }
+
+/* Banner hero look */
+.dashboard-hero.banner {
+  padding: 24px 28px;
+  border-radius: 18px;
+  text-align: center;
+}
+.dashboard-hero.banner .hero-title{ font-size:28px; letter-spacing:0.6px; color:var(--pw-deep) }
+.dashboard-hero.banner .hero-sub{ font-size:14px; margin-top:6px; color:var(--pw-muted) }
+
+/* Highlight box (like the yellow panel in reference) */
+.highlight-box {
+  background: linear-gradient(180deg, rgba(255,214,127,0.98), rgba(255,180,80,0.98));
+  padding: 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(43,11,87,0.14);
+  box-shadow: 0 8px 24px rgba(43,11,87,0.08);
+}
+
+/* Apply outlined look to key components */
+.progress-card, .content-item, .goal-item, .modal-content, .milestones-list .card {
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fff, #fff);
+  border: 1px solid rgba(43,11,87,0.06);
+  box-shadow: 0 8px 18px rgba(43,11,87,0.06);
+}
+
+/* Tighter inner spacing for content blocks */
+.content-item, .goal-item { padding: 16px }
+
+/* Make modal content match outlined cards but centered */
+.modal-content { max-width: 540px; }
+
+/* Smooth quick taps for buttons */
+.btn-primary, .btn-secondary { transition: transform .12s ease, box-shadow .12s ease; }
+
+/* Fine tuning for small screens */
+@media (max-width: 768px) {
+  .dashboard-hero.banner .hero-title{ font-size:20px }
+}
+
+/* Login Page */
+.login-card {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 420px;
+  margin: 4rem auto;
+}
+
+.login-card h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.login-card p {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+}
+
+/* Form Elements */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--pw-deep);
+  box-shadow: 0 8px 24px rgba(43,11,87,0.08);
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--pw-deep) 0%, var(--pw-vivid) 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(43,11,87,0.12);
+}
+
+.btn-secondary, .btn-back, .btn-add, .btn-close {
+  background: linear-gradient(180deg, var(--panel-bg), #fbfbf8);
+  color: #504b43;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover, .btn-back:hover, .btn-add:hover {
+  transform: translateY(-1px);
+  background: var(--glass);
+}
+
+.btn-secondary:hover, .btn-back:hover, .btn-add:hover {
+  background: #e6e5df;
+  transform: translateY(-1px);
+}
+
+.btn-add {
+  width: auto;
+  padding: 0.75rem 1rem;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  width: auto;
+}
+
+/* Progress Bar */
+.progress-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* add a little extra top spacing between the fixed nav and the progress card */
+#dashboardPage .progress-card {
+  margin-top: 30px;
+}
+
+.progress-card h2 {
+  margin-bottom: 1.5rem;
+  color: var(--pw-deep);
+}
+
+.progress-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #ecf0f1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pw-vivid) 0%, var(--pw-warm) 60%, var(--pw-deep) 100%);
+  border-radius: 6px;
+  transition: width 0.5s ease;
+  width: 0%;
+  box-shadow: 0 6px 16px rgba(43,11,87,0.08) inset;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #504b43;
+}
+.progress-text {
+  color: var(--text-dark);
+}
+
+#motivationalMsg {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Action cards for Saved / Liked quick access */
+.action-cards {
+  display:flex;
+  gap:1rem;
+  margin-bottom:1rem;
+}
+.action-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  border-radius:12px;
+  background: linear-gradient(180deg, var(--panel-bg), #fbfbf8);
+  border: 2px solid rgba(0,0,0,0.06);
+  cursor:pointer;
+  min-width:140px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.action-card .card-icon{ font-size:1.5rem }
+.action-card .card-title{ font-weight:700 }
+.action-card .card-sub{ font-size:0.9rem; color:var(--pw-muted) }
+
+/* small icon buttons inside content items */
+.content-actions{ display:flex; gap:8px; margin-top:10px }
+.icon-btn{
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  font-size:1.05rem;
+  padding:6px 8px;
+  border-radius:8px;
+  transition: all 0.3s ease;
+}
+.icon-btn.saved{ color: var(--pw-vivid) }
+.icon-btn.liked{ color: var(--pw-warm) }
+.icon-btn.glow {
+    box-shadow: 0 0 15px rgba(255, 210, 127, 0.6);
+    transform: scale(1.05);
+}
+
+.content-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.content-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.content-item h3 {
+  margin-bottom: 0.5rem;
+  color: var(--pw-deep);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.8rem; /* nudged a bit lower for breathing room */
+}
+
+.nav-buttons .btn-primary {
+  flex: 1;
+  max-width: 200px;
+}
+
+/* Goals Section */
+.goals-section form {
+  margin-bottom: 2rem;
+}
+
+/* Add a little extra offset so the weekly goals content sits slightly below the header */
+#goalsPage .goals-section {
+  margin-top: 1.2rem;
+}
+
+.goals-section .input-group {
+  display: flex;
+  gap: 0;
+}
+
+.goals-section input[type="text"] {
+  flex: 1;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.goal-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--pw-vivid);
+}
+
+/* Weekly calendar styles */
+.week-calendar{
+  display:flex;
+  gap:8px;
+  justify-content:space-between;
+  margin-bottom:14px;
+  padding:10px 6px;
+  align-items:center;
+}
+.week-day{
+  flex:1;
+  min-width:40px;
+  text-align:center;
+  padding:8px 6px;
+  border-radius:8px;
+  background: linear-gradient(180deg, #fff, #fff);
+  border:1px solid rgba(43,11,87,0.06);
+  box-shadow: 0 6px 12px rgba(43,11,87,0.04);
+  font-weight:600;
+  cursor:pointer;
+}
+.week-day .day-name{display:block;font-size:0.8rem;color:var(--pw-muted)}
+.week-day .day-num{display:block;font-size:1.05rem;margin-top:6px}
+.week-day.visited{ background: linear-gradient(90deg, rgba(34,197,94,0.12), rgba(34,197,94,0.04)); border-color: rgba(34,197,94,0.25); }
+.week-day.missed{ background: linear-gradient(90deg, rgba(239,68,68,0.08), rgba(239,68,68,0.03)); border-color: rgba(239,68,68,0.18); }
+.week-legend{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:8px;font-size:0.9rem}
+.legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px}
+.legend-dot.green{background:#22c55e}
+.legend-dot.red{background:#ef4444}
+
+.goal-text {
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.goal-text.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+.reward-btn { padding:10px 14px; border-radius:10px; font-weight:600 }
+.reward-btn + .reward-btn{ margin-left:8px }
+
+/* Arrival toast */
+.arrival-toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  top:96px;
+  z-index:2000;
+  pointer-events:none;
+}
+.arrival-toast .toast-inner{
+  pointer-events:auto;
+  background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,250,245,0.98));
+  border:1px solid rgba(43,11,87,0.08);
+  padding:10px 16px;
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(43,11,87,0.08);
+  font-weight:700;
+  color:var(--pw-deep);
+}
+.arrival-toast{opacity:0;transition:opacity .24s,transform .24s}
+.arrival-toast.active{opacity:1;transform:translateX(-50%) translateY(-6px)}
+
+.milestone-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+/* Milestone states */
+.milestone-locked { opacity: 0.85; filter: grayscale(0.15); }
+.milestone-unlocked { border: 1px solid rgba(255,106,0,0.12); box-shadow: 0 6px 18px rgba(43,11,87,0.06); }
+
+.content-modal {
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.content-body {
+  margin-top: 1rem;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  line-height: 1.8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+    
+  .login-card {
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+  }
+    
+  .header {
+    padding: 0.75rem 0;
+  }
+
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+    
+  .nav-buttons {
+    flex-direction: column;
+  }
+    
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+    
+  .goal-item {
+    padding: 1rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-card,
+  .login-card,
+  .modal-content {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
